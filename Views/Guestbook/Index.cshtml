@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e3ecff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .entry {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+            .entry:nth-child(even) {
+                background-color: #f0f0f0;
+            }
+
+            .entry:nth-child(odd) {
+                background-color: #e9ecef;
+            }
+
+            .entry header {
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+                .entry header h3 {
+                    font-size: 24px;
+                    margin: 0;
+                    margin-right: 10px;
+                    color: #007bff;
+                }
+
+            .entry p {
+                margin: 0;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .entry footer {
+                text-align: right;
+                color: #6c757d;
+                font-size: 14px;
+            }
+
+        .add-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border: 2px solid transparent;
+            font-family: 'Pacifico', cursive; 
+        }
+
+            .add-button:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #007bff; 
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="font-family: 'Pacifico', cursive;">My Guestbook Entries</h2>
+    <p>
+        <a href="/Guestbook/Create" class="add-button"><i class="fas fa-edit icon"></i>Add a new entry</a> 
+    </p>
+    <p>
+        <a href="/Home/Index" class="add-button"><i class="fas fa-home icon"></i>Go to Home page</a> 
+    </p>
+
+    @foreach (var entry in ViewBag.gg)
+    {
+        <article class="entry">
+            <header>
+                <h3><i class="fas fa-envelope icon"></i>@entry.Message</h3>
+            </header>
+            <p>
+                <i class="fas fa-user icon" style="color: #007bff;"></i> Posted by <strong>@entry.Name</strong> on @entry.DateAdded.ToLongDateString()
+            </p>
+            <footer>
+                Entry ID: @entry.Id
+            </footer>
+        </article>
+    }
+
+</body>
+</html>
